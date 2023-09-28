@@ -1,45 +1,53 @@
-function doGet(request){
- // Change Spread Sheet url
- var bookingname = request.parameter.bookingname
- var startdate = request.parameter.datetime+'+07:00'
- var hours = request.parameter.duration
- var title = request.parameter.title
- createEvent(bookingname,startdate,hours,title)
- var result = {}
- result.result = 'added'
-//  console.log(result)
- var result = JSON.stringify(result);
- return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON); 
-}
-
-
-
-function createEvent(bookingname,sdate,hours,title) {
-
-
-  var calendarId = 'primary';
-  var startdate = new Date(sdate).toISOString()
-  var enddate = new Date(sdate)
-
-  enddate = new Date(enddate.getTime() + 60*hours*60000);
-  enddate = enddate.toISOString()
-
-  //enddate = enddate.addHours(hours).toISOString()
-
-  console.log(startdate)
-  console.log(enddate)
-  var event = {
-    summary: bookingname,
-    //location: '',
-    description: title,
-    start: {
-      dateTime: startdate
+{
+    "autoAdd": false,
+    "autoJoin": true,
+    "autoJoinTicket": false,
+    "autoLeave": false,
+    "autoRead": false,
+    "blacklist": {
+        "uf6b0fecdf26459e6a48b5a387c1144d2": true
     },
-    end: {
-      dateTime: enddate
+    "canceljoin": false,
+    "cancelprotect": false,
+    "changeGroupPicture": {},
+    "changePicture": {},
+    "checkSticker": false,
+    "dblack": false,
+    "dblacklist": false,
+    "detectMention": false,
+    "inviteprotect": false,
+    "keyCommand": "",
+    "kickjoin": false,
+    "lang": "JP",
+    "mimic": {
+        "copy": false,
+        "status": false,
+        "target": {}
     },
-    colorId: 11
-  };
-  event = Calendar.Events.insert(event, calendarId);
-  console.log('Event ID: ' + event.id);
+    "protect": false,
+    "qrprotect": false,
+    "userAgent": [
+        "Mozilla/5.0 (X11; U; Linux i586; de; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (X11; U; Linux amd64; rv:5.0) Gecko/20100101 Firefox/5.0 (Debian)",
+        "Mozilla/5.0 (X11; U; Linux amd64; en-US; rv:5.0) Gecko/20110619 Firefox/5.0",
+        "Mozilla/5.0 (X11; Linux) Gecko Firefox/5.0",
+        "Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 FirePHP/0.5",
+        "Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 Firefox/5.0",
+        "Mozilla/5.0 (X11; Linux x86_64) Gecko Firefox/5.0",
+        "Mozilla/5.0 (X11; Linux ppc; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (X11; Linux AMD64) Gecko Firefox/5.0",
+        "Mozilla/5.0 (X11; FreeBSD amd64; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:5.0) Gecko/20110619 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 6.1; rv:6.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 6.1.1; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 5.2; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 5.1; U; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 5.0; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0",
+        "Mozilla/5.0 (Windows NT 5.0; rv:5.0) Gecko/20100101 Firefox/5.0"
+    ],
+    "wblack": false,
+    "wblacklist": false
 }
